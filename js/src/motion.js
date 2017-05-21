@@ -92,7 +92,7 @@ $(document).ready(function () {
       $(document)
         .on('sidebar.isShowing', function () {
           NexT.utils.isDesktop() && $('body').velocity('stop').velocity(
-            {paddingRight: SIDEBAR_WIDTH},
+            {paddingLeft: SIDEBAR_WIDTH},
             SIDEBAR_DISPLAY_DURATION
           );
         })
@@ -127,7 +127,7 @@ $(document).ready(function () {
           duration: SIDEBAR_DISPLAY_DURATION,
           begin: function () {
             $('.sidebar .motion-element').velocity(
-              'transition.slideRightIn',
+              'transition.slideLeftIn',
               {
                 stagger: 50,
                 drag: true,
@@ -147,7 +147,7 @@ $(document).ready(function () {
       this.sidebarEl.trigger('sidebar.isShowing');
     },
     hideSidebar: function () {
-      NexT.utils.isDesktop() && $('body').velocity('stop').velocity({paddingRight: 0});
+      NexT.utils.isDesktop() && $('body').velocity('stop').velocity({paddingLeft: 0});
       this.sidebarEl.find('.motion-element').velocity('stop').css('display', 'none');
       this.sidebarEl.velocity('stop').velocity({width: 0}, {display: 'none'});
 
@@ -282,6 +282,7 @@ $(document).ready(function () {
 
     sidebar: function (integrator) {
       if (CONFIG.sidebar.display === 'always') {
+		//this.showSidebar();
         NexT.utils.displaySidebar();
       }
       integrator.next();
