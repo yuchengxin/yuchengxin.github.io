@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT, java, catyee, 编程, 程序员" />
+  <meta name="keywords" content="java,设计模式,策略模式," />
 
 
 
@@ -93,15 +93,16 @@
 
 
 <meta name="description" content="设计原则： 找出应用中可能需要变化之处，把他们独立出来，不要和那些不需要变化的代码混在一起。把会变化的部分取出并封装起来，好让其他部分不会受到影响。 针对接口编程，而不是针对实现编程。“针对接口编程”的真正意思是针对超类编程。即：变量的申明类应该是超类型，通常是一个抽象类或者一个接口，如此，只要是具体实现此超类的类所产生的对象，都可以指定给这个变量。这也意味着，声明类时不用理会以后执行时的真正对象">
+<meta name="keywords" content="java,设计模式,策略模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java设计模式-策略模式">
+<meta property="og:title" content="Head First设计模式-策略模式">
 <meta property="og:url" content="http://yoursite.com/2017/05/23/java设计模式-策略模式/index.html">
 <meta property="og:site_name" content="Catyee&#39;s Tech Blog">
 <meta property="og:description" content="设计原则： 找出应用中可能需要变化之处，把他们独立出来，不要和那些不需要变化的代码混在一起。把会变化的部分取出并封装起来，好让其他部分不会受到影响。 针对接口编程，而不是针对实现编程。“针对接口编程”的真正意思是针对超类编程。即：变量的申明类应该是超类型，通常是一个抽象类或者一个接口，如此，只要是具体实现此超类的类所产生的对象，都可以指定给这个变量。这也意味着，声明类时不用理会以后执行时的真正对象">
 <meta property="og:image" content="http://my.csdn.net/uploads/201205/11/1336732187_4598.jpg">
-<meta property="og:updated_time" content="2017-05-23T01:06:39.225Z">
+<meta property="og:updated_time" content="2017-05-26T00:49:41.128Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java设计模式-策略模式">
+<meta name="twitter:title" content="Head First设计模式-策略模式">
 <meta name="twitter:description" content="设计原则： 找出应用中可能需要变化之处，把他们独立出来，不要和那些不需要变化的代码混在一起。把会变化的部分取出并封装起来，好让其他部分不会受到影响。 针对接口编程，而不是针对实现编程。“针对接口编程”的真正意思是针对超类编程。即：变量的申明类应该是超类型，通常是一个抽象类或者一个接口，如此，只要是具体实现此超类的类所产生的对象，都可以指定给这个变量。这也意味着，声明类时不用理会以后执行时的真正对象">
 <meta name="twitter:image" content="http://my.csdn.net/uploads/201205/11/1336732187_4598.jpg">
 
@@ -137,7 +138,7 @@
 
 
 
-  <title>java设计模式-策略模式 | Catyee's Tech Blog</title>
+  <title>Head First设计模式-策略模式 | Catyee's Tech Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java设计模式-策略模式</h1>
+          <h1 class="post-title" itemprop="name headline">Head First设计模式-策略模式</h1>
         
 
         <div class="post-meta">
@@ -317,6 +318,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">java读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -351,9 +374,9 @@
 <p>但是这样设计有一个问题：<br>需求开始增加，经过分析，发现鸭子都会飞，所以要给鸭子加上飞的功能。最普通的方法是在Duck超类中加一个fly()的方法并实现。这样每一个鸭子继承Duck之后就有了fly()的功能。但是发现需求有误，实际上并不是所有鸭子都会飞。比如尖叫鸭（类似于尖叫鸡），会叫也会游泳，但是尖叫鸭的叫声是“吱吱”，而不是普通鸭子的“咕咕”。所以尖叫鸭继承Duck之后首先要覆盖掉超类中的quack()方法。最严重的问题是尖叫鸭不会飞，但是继承Duck后它有了飞的功能，这肯定不对。同样的方法就是子类继承超类之后覆盖掉Duck中的fly()方法。但是，如果以后还要加入另一种诱饵鸭子，它其实是一个木头假鸭，不会叫也不会飞。难道又要覆盖掉quack()方法和fly()方法吗？这样太不优雅了。可以看到用继承的方式来提供Duck的行为，会使代码牵一发动全身，不便于维护，也不便于扩展。</p>
 <p>所以需要一个更清晰的方法，让“某些”而不是全部鸭子可飞或者可叫。<br>很自然的一种想法是把飞好叫的行为从Duck超类拿出来，另外设计成接口：Flyable和Quackable。<br>| Duck//抽象类 | | Flyable//接口|  | Quackable//接口|<br>|——| |——–|  |——–|<br>|swim()//普通方法| | fly()//接口中的抽象方法| | quack()//接口中的抽象方法|<br>|display()//抽象方法|<br>这样尖叫鸭可以继承Duck超类，同时实现Quackable接口，而普通鸭子可以继承Duck超类并同时实现Flyable和Quack接口，但是可以看到，每实现一次接口就要重写一此接口中的方法，重复的代码就会急剧增加。显然这不是一种好的方法。</p>
 <p>可以看出造成目前这种困境的原因是需求一直在改变。而现实中需求的改变又恰恰是经常会出现的问题。这个时候就要<strong>找出应用中可能需要经常变化的地方，把他们独立出来，不要和那些不需要变化的代码混在一起。也就是把会变化的部分取出并封装起来，好让其他部分不会受到影响。</strong><br>那么具体到这个例子中要怎么做呢？首先在原始的Duck类中把fly()和quack()拿掉，然后建立两组类，一类与fly相关，一类与quack相关，它们分别实现FlyBehavior和QuackBehavior接口。每一组类将实现各自的动作，可能有一个类实现Quackbehhavior接口完成了“咕咕叫”(Quack类)，另一个类实现Quackbehhavior接口完成了“吱吱叫”(SQuack类)，还有一个类实现Quackbehhavior接口完成了“安静”(MuteQuack类)。另外还有一个类实现FlyBehavior接口完成了“飞”的功能（FlyWithSwing类），还有一个类实现FlyBehavior接口完成了“不能飞”（FlyNoWay类）。<br>但仅仅是这样还不够，因为Java中并没有多继承，如果继承了Duck超类，就不能继承那些实现了FlyBehavior或QuackBehavior的具体实现类。所以要想一种办法把Duck类和我们分离出来的行为整合起来。其实就是在Duck类中添加FlyBehavior和QuackBehavior的属性：<br>| Duck |<br>|:——|<br>|FlyBehavior flyBehavior//飞属性|<br>|QuackBehavior quackBehavior//叫属性|<br>|swim()//鸭子游泳的方法|<br>|display()//鸭子外观的方法|<br>|performFly()//飞行方法|<br>|performQuack()//叫方法|</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class Duck&#123;</div><div class="line">    FlyBehavior flyBehavior;</div><div class="line">    QuackBehavior quackBehavior;</div><div class="line">    </div><div class="line">    //set、get方法</div><div class="line">    ...</div><div class="line">    public abstract void display();</div><div class="line">    public void swim()&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    public void performFly()&#123;</div><div class="line">        flyBehavior.fly();</div><div class="line">    &#125;</div><div class="line">    public void performQuack()&#123;</div><div class="line">        quackBehavior.quack();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样当我们实现尖叫鸭的时候：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class ScreamDuck extends Duck&#123;</div><div class="line">    public ScreamDuck()&#123;</div><div class="line">        quackBehavior = new SQuack();</div><div class="line">        flyBehavior = new FlyNoWay();</div><div class="line">    &#125;</div><div class="line">    @override</div><div class="line">    public void display()&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样就实现了一个尖叫鸭。而普通绿头鸭子就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class MallardDuck extends Duck&#123;</div><div class="line">    public MallardDuck()&#123;</div><div class="line">        quackBehavior = new Quack();</div><div class="line">        flyBehavior = new FlyWithSwing();</div><div class="line">    &#125;</div><div class="line">    @override</div><div class="line">    public void display()&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span></span>&#123;</div><div class="line">    FlyBehavior flyBehavior;</div><div class="line">    QuackBehavior quackBehavior;</div><div class="line">    </div><div class="line">    <span class="comment">//set、get方法</span></div><div class="line">    ...</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swim</span><span class="params">()</span></span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performFly</span><span class="params">()</span></span>&#123;</div><div class="line">        flyBehavior.fly();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performQuack</span><span class="params">()</span></span>&#123;</div><div class="line">        quackBehavior.quack();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样当我们实现尖叫鸭的时候：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScreamDuck</span> <span class="keyword">extends</span> <span class="title">Duck</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ScreamDuck</span><span class="params">()</span></span>&#123;</div><div class="line">        quackBehavior = <span class="keyword">new</span> SQuack();</div><div class="line">        flyBehavior = <span class="keyword">new</span> FlyNoWay();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样就实现了一个尖叫鸭。而普通绿头鸭子就是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallardDuck</span> <span class="keyword">extends</span> <span class="title">Duck</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MallardDuck</span><span class="params">()</span></span>&#123;</div><div class="line">        quackBehavior = <span class="keyword">new</span> Quack();</div><div class="line">        flyBehavior = <span class="keyword">new</span> FlyWithSwing();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这样维护和扩展都容易多了。</p>
 <p>这就是<strong>策略模式</strong>，<br>**</p>
 <h1 id="策略模式的定义："><a href="#策略模式的定义：" class="headerlink" title="策略模式的定义："></a><strong>策略模式的定义：</strong></h1><p>**<br>定义了算法簇，分别封装起来，让它们之间可以互相替换。这个模式可以让算法的变化独立于使用算法的客户。</p>
@@ -387,6 +410,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+            <a href="/tags/策略模式/" rel="tag"># 策略模式</a>
+          
+        </div>
+      
 
       
         
@@ -396,15 +429,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/22/java Strategy/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/26/Java工具类——FreeMarker/" rel="prev" title="Java工具——FreeMaker模板引擎">
+                Java工具——FreeMaker模板引擎 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -476,14 +509,32 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
