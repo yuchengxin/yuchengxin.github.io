@@ -342,6 +342,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/05/31/编写属于自己的Service（服务）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -365,7 +375,7 @@
       
         <p>用Apache james搭建自己的邮件服务器，需要运行james解压包中/bin目录下的run.sh来开启邮件服务器的，然而只能在前台开启，开启后就会邮件服务器会一直运行，也就是说这个终端窗口就不能做别的事情了，除非另外开一个终端窗口。怎样解决呢？其实可以用nohup命令让其变为后台服务。比如说我的james放在/usr/local目录下，那么我可以这么做：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup sh /usr/local/james/bin/run.sh &gt; RUNNING_REPORT 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure></p>
 <p>nohup可以让某个程序在后台运行，用&amp;在程序结尾让程序自动运行。中间的&gt; RUNNING_REPORT是将原程序的标准输出重定向输出到RUNNING_REPORT文件中去，2&gt;&amp;1是指把标准错误输出也重定向到标准输出中去，也就是说如果有错误信息，最终也将输出到RUNNING_REPORT文件中。</p>
-<p>像邮件服务器这样一个持续运行的服务更像是一个系统服务，所以我们可以把它写成自己的service。使用到的是chkconfig，chkconfig命令可以用来检查、设置系统的各种服务。一个service有启动、停止，查询状态和重启这些基础命令，所以这里有一种通用的写法：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> chkconfig: 2345 90 10</div><div class="line"><span class="meta">#</span> description:auto_run</div><div class="line"><span class="meta"></div><div class="line">#</span>因为james需要java环境，如果找不到就重定向到一个已知的java环境</div><div class="line">export JAVA_HOME=$&#123;JAVA_HOME:-/usr/java/latest&#125;</div><div class="line">export JS_HOME=/usr/james</div><div class="line">export JS_BIN_DIR=$JS_HOME/bin</div><div class="line"><span class="meta">#</span>RUNNING_REPORT用来记录程序的标准输出，起到log的作用</div><div class="line">export JS_PID_FILE=$JS_HOME/RUNNING_REPORT</div><div class="line"><span class="meta"></div><div class="line">#</span>启动</div><div class="line">function start &#123;</div><div class="line">    if [ -f "$JS_PID_FILE" ]; then</div><div class="line">        echo "James PID file already exists. Skipped start process"</div><div class="line">        exit 0</div><div class="line">    fi</div><div class="line"></div><div class="line">    echo "Starting james service..."</div><div class="line">    cd $JS_BIN_DIR</div><div class="line">    nohup sh run.sh &gt; $JS_PID_FILE 2&gt;&amp;1 &amp;</div><div class="line">    sleep 1</div><div class="line">&#125;</div><div class="line"><span class="meta"></div><div class="line">#</span>停止</div><div class="line">function stop &#123;</div><div class="line">    if [ -f $JS_PID_FILE ]; then</div><div class="line">        set +e</div><div class="line">        kill -9 `cat $JS_PID_FILE` &gt; /dev/null 2&gt;&amp;1 &amp;</div><div class="line">        rm -f $JS_PID_FILE</div><div class="line">        set -e</div><div class="line">        sleep 1</div><div class="line">    fi</div><div class="line">&#125;</div><div class="line"><span class="meta"></div><div class="line">#</span>状态</div><div class="line">function status &#123;</div><div class="line">    if [ -f $JS_PID_FILE ]; then</div><div class="line">        echo "James is running"</div><div class="line">    else</div><div class="line">        echo "James is not running"</div><div class="line">    fi</div><div class="line">&#125;</div><div class="line"><span class="meta"></div><div class="line">#</span>重启</div><div class="line">function restart &#123;</div><div class="line">    stop</div><div class="line">    start</div><div class="line">&#125;</div><div class="line"></div><div class="line">case "$1" in</div><div class="line">    start)</div><div class="line">    start</div><div class="line">    ;;</div><div class="line">    stop)</div><div class="line">    stop</div><div class="line">    ;;</div><div class="line">    status)</div><div class="line">    status</div><div class="line">    ;;</div><div class="line">    restart)</div><div class="line">    restart</div><div class="line">    ;;</div><div class="line">    *)</div><div class="line">    echo "Usage: $0 start|stop|status|restart"</div><div class="line">esac</div></pre></td></tr></table></figure></p>
+<p>像邮件服务器这样一个持续运行的服务更像是一个系统服务，所以我们可以把它写成自己的service。使用到的是chkconfig，chkconfig命令可以用来检查、设置系统的各种服务。一个service有启动、停止，查询状态和重启这些基础命令，所以这里有一种通用的写法：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> chkconfig: 2345 90 10</div><div class="line"><span class="meta">#</span> description:auto_run</div><div class="line"><span class="meta"></span></div><div class="line">#因为james需要java环境，如果找不到就重定向到一个已知的java环境</div><div class="line">export JAVA_HOME=$&#123;JAVA_HOME:-/usr/java/latest&#125;</div><div class="line">export JS_HOME=/usr/james</div><div class="line">export JS_BIN_DIR=$JS_HOME/bin</div><div class="line"><span class="meta">#</span>RUNNING_REPORT用来记录程序的标准输出，起到log的作用</div><div class="line">export JS_PID_FILE=$JS_HOME/RUNNING_REPORT</div><div class="line"><span class="meta"></span></div><div class="line">#启动</div><div class="line">function start &#123;</div><div class="line">    if [ -f "$JS_PID_FILE" ]; then</div><div class="line">        echo "James PID file already exists. Skipped start process"</div><div class="line">        exit 0</div><div class="line">    fi</div><div class="line"></div><div class="line">    echo "Starting james service..."</div><div class="line">    cd $JS_BIN_DIR</div><div class="line">    nohup sh run.sh &gt; $JS_PID_FILE 2&gt;&amp;1 &amp;</div><div class="line">    sleep 1</div><div class="line">&#125;</div><div class="line"><span class="meta"></span></div><div class="line">#停止</div><div class="line">function stop &#123;</div><div class="line">    if [ -f $JS_PID_FILE ]; then</div><div class="line">        set +e</div><div class="line">        kill -9 `cat $JS_PID_FILE` &gt; /dev/null 2&gt;&amp;1 &amp;</div><div class="line">        rm -f $JS_PID_FILE</div><div class="line">        set -e</div><div class="line">        sleep 1</div><div class="line">    fi</div><div class="line">&#125;</div><div class="line"><span class="meta"></span></div><div class="line">#状态</div><div class="line">function status &#123;</div><div class="line">    if [ -f $JS_PID_FILE ]; then</div><div class="line">        echo "James is running"</div><div class="line">    else</div><div class="line">        echo "James is not running"</div><div class="line">    fi</div><div class="line">&#125;</div><div class="line"><span class="meta"></span></div><div class="line">#重启</div><div class="line">function restart &#123;</div><div class="line">    stop</div><div class="line">    start</div><div class="line">&#125;</div><div class="line"></div><div class="line">case "$1" in</div><div class="line">    start)</div><div class="line">    start</div><div class="line">    ;;</div><div class="line">    stop)</div><div class="line">    stop</div><div class="line">    ;;</div><div class="line">    status)</div><div class="line">    status</div><div class="line">    ;;</div><div class="line">    restart)</div><div class="line">    restart</div><div class="line">    ;;</div><div class="line">    *)</div><div class="line">    echo "Usage: $0 start|stop|status|restart"</div><div class="line">esac</div></pre></td></tr></table></figure></p>
 <p>这个脚本应该很清晰，文件只需要要无后缀保存就可以了，比如保存为mailServer，然后把它放到/etc/init.d目录下，这样就可以用下面的命令来启动了：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service NAME start</div></pre></td></tr></table></figure></p>
 <p>其中的NAME就是文件名。</p>
 <p>下面来详细讲一下chkconfig命令：<br>严格来说chkconfig命令主要用来更新（启动或停止）和查询系统服务的运行级信息。首先要弄明白什么是运行级，在Linux中，运行级别就是操作系统当前正在运行的功能级别。级别可以从0到6，具有不同的功能。这些级别定义在/ect/inittab文件中。这个文件是init程序寻找的主要文件，而最先运行的服务是那些放在/ect/rc.d目录下的文件。</p>
@@ -463,6 +473,8 @@
 
           
   <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
     
   </div>
 
@@ -738,18 +750,21 @@
 
 
   
-
-
-
-
-
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "a484f4152ac740f6863fc1aa2dfc0231",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
   
 
 
 
 
-
-  
 
 
 
