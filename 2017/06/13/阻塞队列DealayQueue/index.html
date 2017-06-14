@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/13/阻塞队列DealayQueue/index.html">
 <meta property="og:site_name" content="Catyee&#39;s Tech Blog">
 <meta property="og:description" content="阻塞队列阻塞队列（BlockingQueue）是那些支持持阻塞的插入和移除的队列。1）支持阻塞的插入方法：意思是当队列满时，队列会阻塞插入元素的线程，直到队列不满。2）支持阻塞的移除方法：意思是在队列为空时，获取元素的线程会等待队列变为非空。 阻塞队列常用于生产者和消费者的场景，生产者是向队列里添加元素的线程，消费者是从队列里取元素的线程。阻塞队列就是生产者用来存放元素、消费者用来获取元素的容器。">
-<meta property="og:updated_time" content="2017-06-13T01:45:04.809Z">
+<meta property="og:updated_time" content="2017-06-14T01:37:26.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阻塞队列DealayQueue">
 <meta name="twitter:description" content="阻塞队列阻塞队列（BlockingQueue）是那些支持持阻塞的插入和移除的队列。1）支持阻塞的插入方法：意思是当队列满时，队列会阻塞插入元素的线程，直到队列不满。2）支持阻塞的移除方法：意思是在队列为空时，获取元素的线程会等待队列变为非空。 阻塞队列常用于生产者和消费者的场景，生产者是向队列里添加元素的线程，消费者是从队列里取元素的线程。阻塞队列就是生产者用来存放元素、消费者用来获取元素的容器。">
@@ -413,13 +413,13 @@
 <p><strong>注意:</strong>如果是无界阻塞队列，队列不可能会出现满的情况，所以使用put或offer方法永远不会被阻塞，而且使用offer方法时，该方法永远返回true。</p>
 <p><strong>JDK 7中的阻塞队列：</strong></p>
 <ul>
-<li>Array Blocking Queue：一个由数组结构组成的有界阻塞队列。</li>
-<li>Linked Blocking Queue：一个由链表结构组成的有界阻塞队列。</li>
-<li>Priority Blocking Queue：一个支持优先级排序的无界阻塞队列。</li>
-<li>Delay Queue：一个使用优先级队列实现的无界阻塞队列。</li>
-<li>Synchronous Queue：一个不存储元素的阻塞队列。</li>
-<li>Linked Transfer Queue：一个由链表结构组成的无界阻塞队列。</li>
-<li>Linked Blocking Deque：一个由链表结构组成的双向阻塞队列。</li>
+<li>ArrayBlockingQueue：一个由数组结构组成的有界阻塞队列。</li>
+<li>LinkedBlockingQueue：一个由链表结构组成的有界阻塞队列。</li>
+<li>PriorityBlockingQueue：一个支持优先级排序的无界阻塞队列。</li>
+<li>DelayQueue：一个使用优先级队列实现的无界阻塞队列。</li>
+<li>SynchronousQueue：一个不存储元素的阻塞队列。</li>
+<li>LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。</li>
+<li>LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。</li>
 </ul>
 <h1 id="DelayQUeue"><a href="#DelayQUeue" class="headerlink" title="DelayQUeue"></a>DelayQUeue</h1><p>DelayQueue是一个无界的BlockingQueue，用于放置实现了Delayed接口的对象，队列使用PriorityQueue来实现。队列中的元素必须实现Delayed接口，在创建元素时可以指定多久才能从队列中获取当前元素。只有在延迟期满时才能从队列中提取元素。这种队列是有序的，即队头对象的延迟到期时间最长。注意：不能将null元素放置到这种队列中。DelayQueue非常有用，可以将DelayQueue运用在以下应用场景：</p>
 <ul>
@@ -510,6 +510,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/06/14/阻塞队列 PriorityBlockingQueue/" rel="prev" title="阻塞队列 PriorityBlockingQueue">
+                阻塞队列 PriorityBlockingQueue <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -582,7 +586,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -604,7 +608,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
