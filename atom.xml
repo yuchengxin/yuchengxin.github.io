@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-17T04:57:49.536Z</updated>
+  <updated>2017-06-23T00:46:06.469Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,114 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RESTFul API</title>
+    <link href="http://yoursite.com/2017/06/23/RESTFul%20API/"/>
+    <id>http://yoursite.com/2017/06/23/RESTFul API/</id>
+    <published>2017-06-23T00:43:37.000Z</published>
+    <updated>2017-06-23T00:46:06.469Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="RESTFul-API的特点："><a href="#RESTFul-API的特点：" class="headerlink" title="RESTFul API的特点："></a>RESTFul API的特点：</h1><p>1、基于“资源”，数据也好、服务也好，在RESTFul设计里一切都是资源。它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。所谓”上网”，就是与互联网上一系列的”资源”互动，调用它的URI。<br>2、无状态。一次调用一般就会返回结果，不存在类似于“打开连接-访问数据-关闭连接”这种依赖于上一次调用的情况。<br>3、URL中通常不出现动词，只有名词<br>4、URL语义清晰、明确<br>5、使用HTTP的GET、POST、DELETE、PUT来表示对于资源的增删改查<br>6、使用JSON不使用XML</p>
+<p>有些同学可能会说，GET、POST我也经常用啊。但是在网站里的GET和POST同RESTFul中的GET、POST是不一样的。网站里使用GET、POST的选择点在于，简单的用GET、复杂对象用POST；但在REST里，GET对应的是查询一个资源，而POST对应的是新增一个资源，意义是决然不同的。理解这一点非常重要。</p>
+<p>我们接着来看一看RESTFul API的一些最佳实践原则：<br>1、使用HTTP动词表示增删改查资源， GET：查询，POST：新增，PUT：更新，DELETE：删除<br>2、返回结果必须使用JSON<br>3、HTTP状态码，在REST中都有特定的意义：200，201,202,204,400,401,403,500。比如401表示用户身份认证失败，403表示你验证身份通过了，但这个资源你不能操作。<br>4、如果出现错误，返回一个错误码。比如我通常是这么定义的：<br>5、API必须有版本的概念，v1，v2，v3<br>6、使用Token令牌来做用户身份的校验与权限分级，而不是Cookie。<br>7、url中大小写不敏感，不要出现大写字母<br>8、使用 - 而不是使用 _ 做URL路径中字符串连接。<br>9、有一份漂亮的文档（很重要）</p>
+<h1 id="如何设计一套合理、好用的API"><a href="#如何设计一套合理、好用的API" class="headerlink" title="如何设计一套合理、好用的API"></a>如何设计一套合理、好用的API</h1><p>一、协议：API与用户的通信协议，总是使用HTTPs协议。<br>二、域名：应该尽量将API部署在专用域名之下。比如：<br><figure class="highlight https"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">https://api.example.com</span></div></pre></td></tr></table></figure></p>
+<p>三、版本（Versioning）应该将API的版本号放入URL:<br><figure class="highlight https"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">https://api.example.com/v1/</span></div></pre></td></tr></table></figure></p>
+<p>四、路径（Endpoint）路径又称”终点”（endpoint），表示API的具体网址。在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">https://api.example.com/v1/zoos</div><div class="line">https://api.example.com/v1/animals</div><div class="line">https://api.example.com/v1/employees</div></pre></td></tr></table></figure></p>
+<p>五、HTTP动词:对于资源的具体操作类型，由HTTP动词表示。常用的HTTP动词有下面五个（括号里是对应的SQL命令）:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP动词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET（SELECT）：从服务器取出资源（一项或多项）。</td>
+</tr>
+<tr>
+<td style="text-align:left">POST（CREATE）：在服务器新建一个资源。</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。</td>
+</tr>
+<tr>
+<td style="text-align:left">PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE（DELETE）：从服务器删除资源。</td>
+</tr>
+</tbody>
+</table>
+<p>还有两个不常用的HTTP动词:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP动词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">HEAD：获取资源的元数据。</td>
+</tr>
+<tr>
+<td style="text-align:left">OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。</td>
+</tr>
+</tbody>
+</table>
+<p>六、过滤信息（Filtering）如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。下面是一些常见的参数:</p>
+<ul>
+<li>?limit=10：指定返回记录的数量</li>
+<li>?offset=10：指定返回记录的开始位置。</li>
+<li>?page=2&amp;per_page=100：指定第几页，以及每页的记录数。</li>
+<li>?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</li>
+<li>?animal_type_id=1：指定筛选条件</li>
+</ul>
+<p>参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，GET /zoo/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。</p>
+<p>七、状态码（Status Codes）服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）:</p>
+<ul>
+<li>200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</li>
+<li>201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</li>
+<li>202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</li>
+<li>204 NO CONTENT - [DELETE]：用户删除数据成功。</li>
+<li>400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</li>
+<li>401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</li>
+<li>403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</li>
+<li>404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</li>
+<li>406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</li>
+<li>410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</li>
+<li>422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</li>
+<li>500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。</li>
+</ul>
+<p><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">状态码的完全列表</a></p>
+<p>八、错误处理（Error handling）如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    error: "Invalid API key"</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>九、返回结果<br>针对不同操作，服务器向用户返回的结果应该符合以下规范:</p>
+<ul>
+<li>GET /collection：返回资源对象的列表（数组）</li>
+<li>GET /collection/resource：返回单个资源对象</li>
+<li>POST /collection：返回新生成的资源对象</li>
+<li>PUT /collection/resource：返回完整的资源对象</li>
+<li>PATCH /collection/resource：返回完整的资源对象</li>
+<li>DELETE /collection/resource：返回一个空文档</li>
+</ul>
+<p>十、Hypermedia API<br>RESTful API最好做到Hypermedia（超媒体），即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"link"</span>: &#123;</div><div class="line">  <span class="attr">"rel"</span>:   <span class="string">"collection https://www.example.com/zoos"</span>,</div><div class="line">  <span class="attr">"href"</span>:  <span class="string">"https://api.example.com/zoos"</span>,</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"List of zoos"</span>,</div><div class="line">  <span class="attr">"type"</span>:  <span class="string">"application/vnd.yourformat+json"</span></div><div class="line">&#125;&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;RESTFul-API的特点：&quot;&gt;&lt;a href=&quot;#RESTFul-API的特点：&quot; class=&quot;headerlink&quot; title=&quot;RESTFul API的特点：&quot;&gt;&lt;/a&gt;RESTFul API的特点：&lt;/h1&gt;&lt;p&gt;1、基于“资源”，数据也好、服务也好
+    
+    </summary>
+    
+      <category term="其它" scheme="http://yoursite.com/categories/%E5%85%B6%E5%AE%83/"/>
+    
+    
+      <category term="Rest" scheme="http://yoursite.com/tags/Rest/"/>
+    
+      <category term="微服务" scheme="http://yoursite.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>Java线程池</title>

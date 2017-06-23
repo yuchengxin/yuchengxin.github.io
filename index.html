@@ -277,6 +277,223 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/RESTFul API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Catyee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/image.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Catyee's Tech Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/23/RESTFul API/" itemprop="url">RESTFul API</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T08:43:37+08:00">
+                2017-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其它/" itemprop="url" rel="index">
+                    <span itemprop="name">其它</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="RESTFul-API的特点："><a href="#RESTFul-API的特点：" class="headerlink" title="RESTFul API的特点："></a>RESTFul API的特点：</h1><p>1、基于“资源”，数据也好、服务也好，在RESTFul设计里一切都是资源。它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。所谓”上网”，就是与互联网上一系列的”资源”互动，调用它的URI。<br>2、无状态。一次调用一般就会返回结果，不存在类似于“打开连接-访问数据-关闭连接”这种依赖于上一次调用的情况。<br>3、URL中通常不出现动词，只有名词<br>4、URL语义清晰、明确<br>5、使用HTTP的GET、POST、DELETE、PUT来表示对于资源的增删改查<br>6、使用JSON不使用XML</p>
+<p>有些同学可能会说，GET、POST我也经常用啊。但是在网站里的GET和POST同RESTFul中的GET、POST是不一样的。网站里使用GET、POST的选择点在于，简单的用GET、复杂对象用POST；但在REST里，GET对应的是查询一个资源，而POST对应的是新增一个资源，意义是决然不同的。理解这一点非常重要。</p>
+<p>我们接着来看一看RESTFul API的一些最佳实践原则：<br>1、使用HTTP动词表示增删改查资源， GET：查询，POST：新增，PUT：更新，DELETE：删除<br>2、返回结果必须使用JSON<br>3、HTTP状态码，在REST中都有特定的意义：200，201,202,204,400,401,403,500。比如401表示用户身份认证失败，403表示你验证身份通过了，但这个资源你不能操作。<br>4、如果出现错误，返回一个错误码。比如我通常是这么定义的：<br>5、API必须有版本的概念，v1，v2，v3<br>6、使用Token令牌来做用户身份的校验与权限分级，而不是Cookie。<br>7、url中大小写不敏感，不要出现大写字母<br>8、使用 - 而不是使用 _ 做URL路径中字符串连接。<br>9、有一份漂亮的文档（很重要）</p>
+<h1 id="如何设计一套合理、好用的API"><a href="#如何设计一套合理、好用的API" class="headerlink" title="如何设计一套合理、好用的API"></a>如何设计一套合理、好用的API</h1><p>一、协议：API与用户的通信协议，总是使用HTTPs协议。<br>二、域名：应该尽量将API部署在专用域名之下。比如：<br><figure class="highlight https"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">https://api.example.com</span></div></pre></td></tr></table></figure></p>
+<p>三、版本（Versioning）应该将API的版本号放入URL:<br><figure class="highlight https"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">https://api.example.com/v1/</span></div></pre></td></tr></table></figure></p>
+<p>四、路径（Endpoint）路径又称”终点”（endpoint），表示API的具体网址。在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">https://api.example.com/v1/zoos</div><div class="line">https://api.example.com/v1/animals</div><div class="line">https://api.example.com/v1/employees</div></pre></td></tr></table></figure></p>
+<p>五、HTTP动词:对于资源的具体操作类型，由HTTP动词表示。常用的HTTP动词有下面五个（括号里是对应的SQL命令）:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP动词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET（SELECT）：从服务器取出资源（一项或多项）。</td>
+</tr>
+<tr>
+<td style="text-align:left">POST（CREATE）：在服务器新建一个资源。</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。</td>
+</tr>
+<tr>
+<td style="text-align:left">PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE（DELETE）：从服务器删除资源。</td>
+</tr>
+</tbody>
+</table>
+<p>还有两个不常用的HTTP动词:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP动词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">HEAD：获取资源的元数据。</td>
+</tr>
+<tr>
+<td style="text-align:left">OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。</td>
+</tr>
+</tbody>
+</table>
+<p>六、过滤信息（Filtering）如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。下面是一些常见的参数:</p>
+<ul>
+<li>?limit=10：指定返回记录的数量</li>
+<li>?offset=10：指定返回记录的开始位置。</li>
+<li>?page=2&amp;per_page=100：指定第几页，以及每页的记录数。</li>
+<li>?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</li>
+<li>?animal_type_id=1：指定筛选条件</li>
+</ul>
+<p>参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，GET /zoo/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。</p>
+<p>七、状态码（Status Codes）服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）:</p>
+<ul>
+<li>200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</li>
+<li>201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</li>
+<li>202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</li>
+<li>204 NO CONTENT - [DELETE]：用户删除数据成功。</li>
+<li>400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</li>
+<li>401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</li>
+<li>403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</li>
+<li>404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</li>
+<li>406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</li>
+<li>410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</li>
+<li>422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</li>
+<li>500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。</li>
+</ul>
+<p><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">状态码的完全列表</a></p>
+<p>八、错误处理（Error handling）如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    error: "Invalid API key"</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>九、返回结果<br>针对不同操作，服务器向用户返回的结果应该符合以下规范:</p>
+<ul>
+<li>GET /collection：返回资源对象的列表（数组）</li>
+<li>GET /collection/resource：返回单个资源对象</li>
+<li>POST /collection：返回新生成的资源对象</li>
+<li>PUT /collection/resource：返回完整的资源对象</li>
+<li>PATCH /collection/resource：返回完整的资源对象</li>
+<li>DELETE /collection/resource：返回一个空文档</li>
+</ul>
+<p>十、Hypermedia API<br>RESTful API最好做到Hypermedia（超媒体），即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"link"</span>: &#123;</div><div class="line">  <span class="attr">"rel"</span>:   <span class="string">"collection https://www.example.com/zoos"</span>,</div><div class="line">  <span class="attr">"href"</span>:  <span class="string">"https://api.example.com/zoos"</span>,</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"List of zoos"</span>,</div><div class="line">  <span class="attr">"type"</span>:  <span class="string">"application/vnd.yourformat+json"</span></div><div class="line">&#125;&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/16/Java线程池/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1859,234 +2076,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/23/java设计模式-策略模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Catyee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/image.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Catyee's Tech Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/23/java设计模式-策略模式/" itemprop="url">Head First设计模式-策略模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-23T08:59:26+08:00">
-                2017-05-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">java读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="设计原则："><a href="#设计原则：" class="headerlink" title="设计原则："></a><strong>设计原则：</strong></h1><ul>
-<li>找出应用中可能需要变化之处，把他们独立出来，不要和那些不需要变化的代码混在一起。把会变化的部分取出并封装起来，好让其他部分不会受到影响。</li>
-<li>针对接口编程，而不是针对实现编程。“针对接口编程”的真正意思是针对超类编程。即：变量的申明类应该是超类型，通常是一个抽象类或者一个接口，如此，只要是具体实现此超类的类所产生的对象，都可以指定给这个变量。这也意味着，声明类时不用理会以后执行时的真正对象类型。</li>
-<li>多用组合，少用继承</li>
-</ul>
-<h1 id="举例："><a href="#举例：" class="headerlink" title="举例："></a><strong>举例：</strong></h1><p>世界上有各种鸭子，它们外观不同，但是都会游泳，也都会叫。用传统的面向对象的思路来设计，首先有一个Duck的抽象超类，并让各种鸭子继承这个超类。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Duck</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">quack()//鸭子叫的方法</td>
-</tr>
-<tr>
-<td style="text-align:left">swim()//鸭子游泳的方法</td>
-</tr>
-<tr>
-<td style="text-align:left">display()//鸭子外观的方法</td>
-</tr>
-</tbody>
-</table>
-<p>如果是传统的面向对象思想，所有的鸭子都会叫，也都会游泳，所以quack()方法和swim()方法放在超类Duck中实现，而由于每只鸭子的外观不同，所以display()方法在Duck类中设计成抽象方法，由具体的鸭子继承超类后自己去实现。比如现在有绿头鸭MallardDuck和红头鸭ReaheadDuck，它们继承超类Duck，所以有了quack和swim的功能，同时实现display方法从而有了不同的外观。</p>
-<p>但是这样设计有一个问题：<br>需求开始增加，经过分析，发现鸭子都会飞，所以要给鸭子加上飞的功能。最普通的方法是在Duck超类中加一个fly()的方法并实现。这样每一个鸭子继承Duck之后就有了fly()的功能。但是发现需求有误，实际上并不是所有鸭子都会飞。比如尖叫鸭（类似于尖叫鸡），会叫也会游泳，但是尖叫鸭的叫声是“吱吱”，而不是普通鸭子的“咕咕”。所以尖叫鸭继承Duck之后首先要覆盖掉超类中的quack()方法。最严重的问题是尖叫鸭不会飞，但是继承Duck后它有了飞的功能，这肯定不对。同样的方法就是子类继承超类之后覆盖掉Duck中的fly()方法。但是，如果以后还要加入另一种诱饵鸭子，它其实是一个木头假鸭，不会叫也不会飞。难道又要覆盖掉quack()方法和fly()方法吗？这样太不优雅了。可以看到用继承的方式来提供Duck的行为，会使代码牵一发动全身，不便于维护，也不便于扩展。</p>
-<p>所以需要一个更清晰的方法，让“某些”而不是全部鸭子可飞或者可叫。<br>很自然的一种想法是把飞好叫的行为从Duck超类拿出来，另外设计成接口：Flyable和Quackable。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Duck//抽象类</th>
-<th></th>
-<th style="text-align:left">Flyable//接口</th>
-<th></th>
-<th style="text-align:left">Quackable//接口</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">swim()//普通方法</td>
-<td></td>
-<td style="text-align:left">fly()//接口中的抽象方法</td>
-<td></td>
-<td style="text-align:left">quack()//接口中的抽象方法</td>
-</tr>
-<tr>
-<td style="text-align:left">display()//抽象方法</td>
-<td></td>
-<td style="text-align:left"></td>
-<td></td>
-<td style="text-align:left"></td>
-</tr>
-</tbody>
-</table>
-<p>这样尖叫鸭可以继承Duck超类，同时实现Quackable接口，而普通鸭子可以继承Duck超类并同时实现Flyable和Quack接口，但是可以看到，每实现一次接口就要重写一此接口中的方法，重复的代码就会急剧增加。显然这不是一种好的方法。</p>
-<p>可以看出造成目前这种困境的原因是需求一直在改变。而现实中需求的改变又恰恰是经常会出现的问题。这个时候就要<strong>找出应用中可能需要经常变化的地方，把他们独立出来，不要和那些不需要变化的代码混在一起。也就是把会变化的部分取出并封装起来，好让其他部分不会受到影响。</strong><br>那么具体到这个例子中要怎么做呢？首先在原始的Duck类中把fly()和quack()拿掉，然后建立两组类，一类与fly相关，一类与quack相关，它们分别实现FlyBehavior和QuackBehavior接口。每一组类将实现各自的动作，可能有一个类实现Quackbehhavior接口完成了“咕咕叫”(Quack类)，另一个类实现Quackbehhavior接口完成了“吱吱叫”(SQuack类)，还有一个类实现Quackbehhavior接口完成了“安静”(MuteQuack类)。另外还有一个类实现FlyBehavior接口完成了“飞”的功能（FlyWithSwing类），还有一个类实现FlyBehavior接口完成了“不能飞”（FlyNoWay类）。<br>但仅仅是这样还不够，因为Java中并没有多继承，如果继承了Duck超类，就不能继承那些实现了FlyBehavior或QuackBehavior的具体实现类。所以要想一种办法把Duck类和我们分离出来的行为整合起来。其实就是在Duck类中添加FlyBehavior和QuackBehavior的属性：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Duck</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">FlyBehavior flyBehavior//飞属性</td>
-</tr>
-<tr>
-<td style="text-align:left">QuackBehavior quackBehavior//叫属性</td>
-</tr>
-<tr>
-<td style="text-align:left">swim()//鸭子游泳的方法</td>
-</tr>
-<tr>
-<td style="text-align:left">display()//鸭子外观的方法</td>
-</tr>
-<tr>
-<td style="text-align:left">performFly()//飞行方法</td>
-</tr>
-<tr>
-<td style="text-align:left">performQuack()//叫方法</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span></span>&#123;</div><div class="line">    FlyBehavior flyBehavior;</div><div class="line">    QuackBehavior quackBehavior;</div><div class="line">    </div><div class="line">    <span class="comment">//set、get方法</span></div><div class="line">    ...</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swim</span><span class="params">()</span></span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performFly</span><span class="params">()</span></span>&#123;</div><div class="line">        flyBehavior.fly();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performQuack</span><span class="params">()</span></span>&#123;</div><div class="line">        quackBehavior.quack();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样当我们实现尖叫鸭的时候：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScreamDuck</span> <span class="keyword">extends</span> <span class="title">Duck</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ScreamDuck</span><span class="params">()</span></span>&#123;</div><div class="line">        quackBehavior = <span class="keyword">new</span> SQuack();</div><div class="line">        flyBehavior = <span class="keyword">new</span> FlyNoWay();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样就实现了一个尖叫鸭。而普通绿头鸭子就是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MallardDuck</span> <span class="keyword">extends</span> <span class="title">Duck</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MallardDuck</span><span class="params">()</span></span>&#123;</div><div class="line">        quackBehavior = <span class="keyword">new</span> Quack();</div><div class="line">        flyBehavior = <span class="keyword">new</span> FlyWithSwing();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样维护和扩展都容易多了。</p>
-<p>这就是<strong>策略模式</strong>，<br>**</p>
-<h1 id="策略模式的定义："><a href="#策略模式的定义：" class="headerlink" title="策略模式的定义："></a><strong>策略模式的定义：</strong></h1><p>**<br>定义了算法簇，分别封装起来，让它们之间可以互相替换。这个模式可以让算法的变化独立于使用算法的客户。</p>
-<h1 id="策略模式的结构："><a href="#策略模式的结构：" class="headerlink" title="策略模式的结构："></a><strong>策略模式的结构：</strong></h1><p><img src="http://my.csdn.net/uploads/201205/11/1336732187_4598.jpg" alt="策略模式的结构"></p>
-<p>**</p>
-<h1 id="策略模式的组成："><a href="#策略模式的组成：" class="headerlink" title="策略模式的组成："></a><strong>策略模式的组成：</strong></h1><p><strong>环境类(Context)</strong>:用一个ConcreteStrategy对象来配置。维护一个对Strategy对象的引用。可定义一个接口来让Strategy访问它的数据。<br><strong>抽象策略类(Strategy)</strong>:定义所有支持的算法的公共接口。Context使用这个接口来调用某ConcreteStrategy定义的算法。<br><strong>具体策略类(ConcreteStrategy)</strong>:以Strategy接口实现某具体算法。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2129,7 +2125,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2140,7 +2136,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2151,7 +2147,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
