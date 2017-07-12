@@ -57,11 +57,11 @@
   </entry>
   
   <entry>
-    <title>RESTFul API</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;RESTFul API&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/06/23/RESTFul%20API/"/>
     <id>http://yoursite.com/2017/06/23/RESTFul API/</id>
     <published>2017-06-23T00:43:37.000Z</published>
-    <updated>2017-06-23T00:46:06.469Z</updated>
+    <updated>2017-07-12T01:49:30.338Z</updated>
     
     <content type="html"><![CDATA[<h1 id="RESTFul-API的特点："><a href="#RESTFul-API的特点：" class="headerlink" title="RESTFul API的特点："></a>RESTFul API的特点：</h1><p>1、基于“资源”，数据也好、服务也好，在RESTFul设计里一切都是资源。它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。所谓”上网”，就是与互联网上一系列的”资源”互动，调用它的URI。<br>2、无状态。一次调用一般就会返回结果，不存在类似于“打开连接-访问数据-关闭连接”这种依赖于上一次调用的情况。<br>3、URL中通常不出现动词，只有名词<br>4、URL语义清晰、明确<br>5、使用HTTP的GET、POST、DELETE、PUT来表示对于资源的增删改查<br>6、使用JSON不使用XML</p>
 <p>有些同学可能会说，GET、POST我也经常用啊。但是在网站里的GET和POST同RESTFul中的GET、POST是不一样的。网站里使用GET、POST的选择点在于，简单的用GET、复杂对象用POST；但在REST里，GET对应的是查询一个资源，而POST对应的是新增一个资源，意义是决然不同的。理解这一点非常重要。</p>
@@ -165,11 +165,11 @@
   </entry>
   
   <entry>
-    <title>Java线程池</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Java线程池&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/06/16/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     <id>http://yoursite.com/2017/06/16/Java线程池/</id>
     <published>2017-06-16T00:50:06.000Z</published>
-    <updated>2017-06-17T04:57:49.536Z</updated>
+    <updated>2017-07-12T01:49:54.615Z</updated>
     
     <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在面向对象编程中，创建和销毁对象是很费时间的，因为创建一个对象要获取内存资源或者其它更多资源。在Java中更是如此，虚拟机将试图跟踪每一个对象，以便能够在对象销毁后进行垃圾回收。</p>
 <p>所以提高服务程序效率的一个手段就是尽可能减少创建和销毁对象的次数，特别是一些很耗资源的对象创建和销毁。如何利用已有对象来服务就是一个需要解决的关键问题，其实这就是一些”池化资源”技术产生的原因。</p>
@@ -282,11 +282,11 @@
   </entry>
   
   <entry>
-    <title>阻塞队列 PriorityBlockingQueue</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;阻塞队列 PriorityBlockingQueue&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/06/14/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%20PriorityBlockingQueue/"/>
     <id>http://yoursite.com/2017/06/14/阻塞队列 PriorityBlockingQueue/</id>
     <published>2017-06-14T01:37:23.000Z</published>
-    <updated>2017-06-14T01:50:17.935Z</updated>
+    <updated>2017-07-12T01:46:30.394Z</updated>
     
     <content type="html"><![CDATA[<p>PriorityBlockingQueue是一个基于优先级堆的无界的并发安全的优先级队列（FIFO），队列的元素按照其自然顺序进行排序，或者根据构造队列时提供的Comparator进行排序，具体取决于所使用的构造方法。PriorityBlockingQueue里面存储的对象必须是实现Comparable接口。队列通过这个接口的compare方法确定对象的priority。</p>
 <p>PriorityBlockingQueue通过使用堆这种数据结构实现将队列中的元素按照某种排序规则进行排序，从而改变先进先出的队列顺序，提供开发者改变队列中元素的顺序的能力。队列中的元素必须是可比较的，即实现Comparable接口，或者在构建函数时提供可对队列元素进行比较的Comparator对象。</p>
@@ -322,11 +322,11 @@
   </entry>
   
   <entry>
-    <title>阻塞队列DealayQueue</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;阻塞队列DealayQueue&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/06/13/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97DealayQueue/"/>
     <id>http://yoursite.com/2017/06/13/阻塞队列DealayQueue/</id>
     <published>2017-06-13T01:42:23.000Z</published>
-    <updated>2017-06-14T01:37:26.779Z</updated>
+    <updated>2017-07-12T01:45:50.180Z</updated>
     
     <content type="html"><![CDATA[<h1 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h1><p>阻塞队列（BlockingQueue）是那些支持持阻塞的插入和移除的队列。<br>1）支持阻塞的插入方法：意思是当队列满时，队列会阻塞插入元素的线程，直到队列不满。<br>2）支持阻塞的移除方法：意思是在队列为空时，获取元素的线程会等待队列变为非空。</p>
 <p>阻塞队列常用于生产者和消费者的场景，生产者是向队列里添加元素的线程，消费者是从队列里取元素的线程。阻塞队列就是生产者用来存放元素、消费者用来获取元素的容器。</p>
@@ -429,11 +429,11 @@
   </entry>
   
   <entry>
-    <title>Spring实战（四） 通过Java代码装配Bean</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Spring实战（四） 通过Java代码装配Bean&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/06/09/Spring%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%89%EF%BC%89%20%E9%80%9A%E8%BF%87Java%E4%BB%A3%E7%A0%81%E8%A3%85%E9%85%8DBean/"/>
     <id>http://yoursite.com/2017/06/09/Spring实战（三） 通过Java代码装配Bean/</id>
     <published>2017-06-09T01:44:26.000Z</published>
-    <updated>2017-06-09T01:45:01.878Z</updated>
+    <updated>2017-07-12T01:48:17.357Z</updated>
     
     <content type="html"><![CDATA[<p>尽管在很多场景下通过组件扫描和自动装配实现Spring的自动化配置是更为推荐的方式，但有时候自动化配置的方案行不通，因此需要明确配置Spring。比如说，你想要将第三方库中的组件装配到你的应用中，在这种情况下，是没有办法在它的类上添加@Component和@Autowired注解的，因此就不能使用自动化装配的方案了。</p>
 <p>在这种情况下，你必须要采用显式装配的方式。在进行显式配置的时候，有两种可选方案：Java和XML。<br>就像我之前所说的，在进行显式配置时，JavaConfig是更好的方案，因为它更为强大、类型安全并且对重构友好。因为它就是Java代码，就像应用程序中的其他Java代码一样。</p>
@@ -476,11 +476,11 @@
   </entry>
   
   <entry>
-    <title>Spring实战（三） 自动装配Bean</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Spring实战（三） 自动装配Bean&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/06/09/Spring%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%89%EF%BC%89%20%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8DBean/"/>
     <id>http://yoursite.com/2017/06/09/Spring实战（三） 自动装配Bean/</id>
     <published>2017-06-09T00:53:26.000Z</published>
-    <updated>2017-06-09T00:54:04.124Z</updated>
+    <updated>2017-07-12T01:47:44.849Z</updated>
     
     <content type="html"><![CDATA[<p>在Spring中，对象无需自己查找或创建与其所关联的其他对象。相反，容器负责把需要相互协作的对象引用赋予各个对象。例如，一个订单管理组件需要信用卡认证组件，但它不需要自己创建信用卡认证组件。订单管理组件只需要表明自己两手空空，容器就会主动赋予它一个信用卡认证组件。创建应用对象之间协作关系的行为通常称为装配（wiring），这也是依赖注入（DI）的本质。</p>
 <h1 id="Spring配置"><a href="#Spring配置" class="headerlink" title="Spring配置"></a>Spring配置</h1><p>Spring容器负责创建应用程序中的bean并通过DI来协调这些对象之间的关系。但是，作为开发人员，你需要告诉Spring要创建哪些bean并且如何将其装配在一起。当描述bean如何进行装配时，Spring具有非常大的灵活性，它提供了三种主要的装配机制：</p>
@@ -546,11 +546,11 @@
   </entry>
   
   <entry>
-    <title>Spring实战（二）上下文Context和Bean的生命周期</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Spring实战（二）上下文Context和Bean的生命周期&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/06/06/Spring%E5%AE%9E%E6%88%98%EF%BC%88%E4%BA%8C%EF%BC%89%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8CBean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
     <id>http://yoursite.com/2017/06/06/Spring实战（二）上下文和Bean的生命周期/</id>
     <published>2017-06-06T11:43:56.000Z</published>
-    <updated>2017-06-06T12:29:31.892Z</updated>
+    <updated>2017-07-12T01:48:47.033Z</updated>
     
     <content type="html"><![CDATA[<p>在基于Spring的应用中，你的应用对象生存于Spring容器（container）中。Spring容器负责创建对象，装配它们，配置它们并管理它们的整个生命周期，从生存到死亡（在这里，可能就是new到finalize()）。容器是Spring框架的核心。Spring容器使用DI管理构成应用的组件，它会创建相互协作的组件之间的关联。</p>
 <p>Spring容器并不是只有一个。Spring自带了多个容器实现，可以归为两种不同的类型。<strong>bean工厂</strong>（由org.springframework.beans.factory.eanFactory接口定义）是最简单的容器，提供基本的DI支持。<strong>应用上下文</strong>（由org.springframework.context.ApplicationContext接口定义）基于BeanFactory构建，并提供应用框架级别的服务，例如从属性文件解析文本信息以及发布应用事件给感兴趣的事件监听者。但是实际应用中，我们往往都会使用应用上下文。</p>
@@ -597,11 +597,11 @@
   </entry>
   
   <entry>
-    <title>Spring实战（一） 依赖注入和面向切面编程</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Spring实战（一） 依赖注入和面向切面编程&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/06/02/Java%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Spring%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yoursite.com/2017/06/02/Java读书笔记——Spring实战（一）/</id>
     <published>2017-06-02T01:15:26.000Z</published>
-    <updated>2017-06-02T01:30:50.958Z</updated>
+    <updated>2017-07-12T01:51:13.579Z</updated>
     
     <content type="html"><![CDATA[<p>Spring用bean或者JavaBean来表示应用组件，但并不意味着Spring组件必须要遵循JavaBean规范。一个Spring组件可以是任何形式的POJO。以下都采用JavaBean的广泛定义，即POJO的同义词。</p>
 <p>Spring的根本使命就是简化Java开发，而为了降低Java开发的复杂性，Spring采取了以下4种关键策略：</p>
@@ -663,11 +663,11 @@
   </entry>
   
   <entry>
-    <title>编写属于自己的Service（服务）</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;编写属于自己的Service(服务)&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/05/31/%E7%BC%96%E5%86%99%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84Service%EF%BC%88%E6%9C%8D%E5%8A%A1%EF%BC%89/"/>
     <id>http://yoursite.com/2017/05/31/编写属于自己的Service（服务）/</id>
     <published>2017-05-31T13:10:26.000Z</published>
-    <updated>2017-05-31T13:12:01.515Z</updated>
+    <updated>2017-07-12T01:47:15.419Z</updated>
     
     <content type="html"><![CDATA[<p>用Apache james搭建自己的邮件服务器，需要运行james解压包中/bin目录下的run.sh来开启邮件服务器的，然而只能在前台开启，开启后就会邮件服务器会一直运行，也就是说这个终端窗口就不能做别的事情了，除非另外开一个终端窗口。怎样解决呢？其实可以用nohup命令让其变为后台服务。比如说我的james放在/usr/local目录下，那么我可以这么做：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup sh /usr/local/james/bin/run.sh &gt; RUNNING_REPORT 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure></p>
 <p>nohup可以让某个程序在后台运行，用&amp;在程序结尾让程序自动运行。中间的&gt; RUNNING_REPORT是将原程序的标准输出重定向输出到RUNNING_REPORT文件中去，2&gt;&amp;1是指把标准错误输出也重定向到标准输出中去，也就是说如果有错误信息，最终也将输出到RUNNING_REPORT文件中。</p>
@@ -706,11 +706,11 @@
   </entry>
   
   <entry>
-    <title>Java工具——FreeMaker模板引擎</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Java工具——FreeMaker模板引擎&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/05/26/Java%E5%B7%A5%E5%85%B7%E7%B1%BB%E2%80%94%E2%80%94FreeMarker/"/>
     <id>http://yoursite.com/2017/05/26/Java工具类——FreeMarker/</id>
     <published>2017-05-26T00:47:26.000Z</published>
-    <updated>2017-05-26T01:36:30.604Z</updated>
+    <updated>2017-07-12T01:50:40.658Z</updated>
     
     <content type="html"><![CDATA[<p>FreeMaker是一个模板引擎，它基于模板和数据来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)。也就是说它可以生成文件，而这些文件的格式是我们指定好的格式。文件中的内容是通过插值来填充的。也就是所谓的模板+数据=输出。</p>
 <p>首先来看看FreeMarker模板文件，它是以.ftl为后缀的文件，主要由如下4个部分组成:<br>1.文本:直接输出的部分<br>2.注释:&lt;#– … –&gt;格式部分,不会输出<br>3.插值:即${…}或#{…}格式的部分,将使用数据模型中的部分替代输出<br>4.FTL指令:FreeMarker指定,和HTML标记类似,名字前加#予以区分,不会输出</p>
@@ -821,11 +821,11 @@
   </entry>
   
   <entry>
-    <title>Head First设计模式-策略模式</title>
+    <title>&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Head First设计模式-策略模式&lt;/font&gt;</title>
     <link href="http://yoursite.com/2017/05/23/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/05/23/java设计模式-策略模式/</id>
     <published>2017-05-23T00:59:26.000Z</published>
-    <updated>2017-05-26T01:25:27.763Z</updated>
+    <updated>2017-07-12T01:50:18.202Z</updated>
     
     <content type="html"><![CDATA[<h1 id="设计原则："><a href="#设计原则：" class="headerlink" title="设计原则："></a><strong>设计原则：</strong></h1><ul>
 <li>找出应用中可能需要变化之处，把他们独立出来，不要和那些不需要变化的代码混在一起。把会变化的部分取出并封装起来，好让其他部分不会受到影响。</li>
