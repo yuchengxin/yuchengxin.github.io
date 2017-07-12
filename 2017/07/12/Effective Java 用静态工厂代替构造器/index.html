@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="对于一个类，要获得它的一个实例，一般而言是提供一个共有的构造器。但是可以考虑用一个静态工厂来代替构造器。要注意的是，这里的静态工厂与设计模式中的工厂方法不同。来看一看服务提供者框架：服务提供者框架是指这样一个系统：多个服务提供者实现了某个服务，系统为用户提供多个实现，并把它们从多个实现中解耦出来。服务提供者框架中有三个重要的组件：服务接口(Service Interface), 这是由提供者定义和">
+<meta name="description" content="对于一个类，要获得它的一个实例，一般而言是提供一个共有的构造器。但是可以考虑用一个静态工厂来代替构造器。要注意的是，这里的静态工厂与设计模式中的工厂方法不同。 来看一看服务提供者框架：服务提供者框架是指这样一个系统：多个服务提供者实现了某个服务，系统为用户提供多个实现，并把它们从多个实现中解耦出来。 服务提供者框架中有三个重要的组件：服务接口(Service Interface), 这是由提供者定">
 <meta name="keywords" content="Java,经验之谈,高效开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&lt;font color=#0099ff size=8 face=&quot;黑体&quot;&gt;Effective Java 用静态工厂代替构造器&lt;&#x2F;font&gt;">
+<meta property="og:title" content="&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Effective Java 用静态工厂代替构造器&lt;&#x2F;font&gt;">
 <meta property="og:url" content="http://yoursite.com/2017/07/12/Effective Java 用静态工厂代替构造器/index.html">
 <meta property="og:site_name" content="Catyee&#39;s Tech Blog">
-<meta property="og:description" content="对于一个类，要获得它的一个实例，一般而言是提供一个共有的构造器。但是可以考虑用一个静态工厂来代替构造器。要注意的是，这里的静态工厂与设计模式中的工厂方法不同。来看一看服务提供者框架：服务提供者框架是指这样一个系统：多个服务提供者实现了某个服务，系统为用户提供多个实现，并把它们从多个实现中解耦出来。服务提供者框架中有三个重要的组件：服务接口(Service Interface), 这是由提供者定义和">
-<meta property="og:updated_time" content="2017-07-12T01:39:55.646Z">
+<meta property="og:description" content="对于一个类，要获得它的一个实例，一般而言是提供一个共有的构造器。但是可以考虑用一个静态工厂来代替构造器。要注意的是，这里的静态工厂与设计模式中的工厂方法不同。 来看一看服务提供者框架：服务提供者框架是指这样一个系统：多个服务提供者实现了某个服务，系统为用户提供多个实现，并把它们从多个实现中解耦出来。 服务提供者框架中有三个重要的组件：服务接口(Service Interface), 这是由提供者定">
+<meta property="og:updated_time" content="2017-07-12T01:42:42.915Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="&lt;font color=#0099ff size=8 face=&quot;黑体&quot;&gt;Effective Java 用静态工厂代替构造器&lt;&#x2F;font&gt;">
-<meta name="twitter:description" content="对于一个类，要获得它的一个实例，一般而言是提供一个共有的构造器。但是可以考虑用一个静态工厂来代替构造器。要注意的是，这里的静态工厂与设计模式中的工厂方法不同。来看一看服务提供者框架：服务提供者框架是指这样一个系统：多个服务提供者实现了某个服务，系统为用户提供多个实现，并把它们从多个实现中解耦出来。服务提供者框架中有三个重要的组件：服务接口(Service Interface), 这是由提供者定义和">
+<meta name="twitter:title" content="&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Effective Java 用静态工厂代替构造器&lt;&#x2F;font&gt;">
+<meta name="twitter:description" content="对于一个类，要获得它的一个实例，一般而言是提供一个共有的构造器。但是可以考虑用一个静态工厂来代替构造器。要注意的是，这里的静态工厂与设计模式中的工厂方法不同。 来看一看服务提供者框架：服务提供者框架是指这样一个系统：多个服务提供者实现了某个服务，系统为用户提供多个实现，并把它们从多个实现中解耦出来。 服务提供者框架中有三个重要的组件：服务接口(Service Interface), 这是由提供者定">
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-  <title><font color=#0099ff size=8 face="黑体">Effective Java 用静态工厂代替构造器</font> | Catyee's Tech Blog</title>
+  <title><font color=#0099ff size=6 face="微软雅黑">Effective Java 用静态工厂代替构造器</font> | Catyee's Tech Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"><font color=#0099ff size=8 face="黑体">Effective Java 用静态工厂代替构造器</font></h1>
+          <h1 class="post-title" itemprop="name headline"><font color=#0099ff size=6 face="微软雅黑">Effective Java 用静态工厂代替构造器</font></h1>
         
 
         <div class="post-meta">
@@ -373,9 +373,9 @@
       
 
       
-        <font color="#0099ff" size="3" face="黑体"><br>对于一个类，要获得它的一个实例，一般而言是提供一个共有的构造器。但是可以考虑用一个静态工厂来代替构造器。要注意的是，这里的静态工厂与设计模式中的工厂方法不同。<br><br>来看一看服务提供者框架：<br>服务提供者框架是指这样一个系统：多个服务提供者实现了某个服务，系统为用户提供多个实现，并把它们从多个实现中解耦出来。<br><br>服务提供者框架中有三个重要的组件：服务接口(Service Interface), 这是由提供者定义和实现的。提供者注册API(Provider Registration API)，这是系统用来注册提供者的，因为具体的服务由提供者实现，所以实际上只有注册提供者之后才会有具体的服务。服务访问API(Service Access API)，是用户用来获取服务实例的。还有一个可选的组件：服务提供者接口(Service Provider Interface)<br>这些提供者负责创建其服务实现的实例。如果没有服务提供者接口，实现就按照类名称注册，并通过反射方式进行实例化。<br></font>
-
-
+        <p>对于一个类，要获得它的一个实例，一般而言是提供一个共有的构造器。但是可以考虑用一个静态工厂来代替构造器。要注意的是，这里的静态工厂与设计模式中的工厂方法不同。</p>
+<p>来看一看服务提供者框架：<br>服务提供者框架是指这样一个系统：多个服务提供者实现了某个服务，系统为用户提供多个实现，并把它们从多个实现中解耦出来。</p>
+<p>服务提供者框架中有三个重要的组件：服务接口(Service Interface), 这是由提供者定义和实现的。提供者注册API(Provider Registration API)，这是系统用来注册提供者的，因为具体的服务由提供者实现，所以实际上只有注册提供者之后才会有具体的服务。服务访问API(Service Access API)，是用户用来获取服务实例的。还有一个可选的组件：服务提供者接口(Service Provider Interface)<br>这些提供者负责创建其服务实现的实例。如果没有服务提供者接口，实现就按照类名称注册，并通过反射方式进行实例化。</p>
 <p>举一个实例：<br>服务接口(Service Interface)：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* Service Interface</div><div class="line">*/</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Service</span> </span>&#123;</div><div class="line">	<span class="comment">// Service-specific methods go here</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>服务提供者接口(Service Provider Interface):</p>
@@ -433,8 +433,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/23/RESTFul API/" rel="next" title="RESTFul API">
-                <i class="fa fa-chevron-left"></i> RESTFul API
+              <a href="/2017/06/26/Spring实战（五）通过XML装配bean/" rel="next" title="Spring实战（五）通过XML装配bean">
+                <i class="fa fa-chevron-left"></i> Spring实战（五）通过XML装配bean
               </a>
             
           </div>
@@ -506,7 +506,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
