@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/14/Effective Java 使用构建器Builder/index.html">
 <meta property="og:site_name" content="Catyee&#39;s Tech Blog">
 <meta property="og:description" content="如果一个类有大量可选的参数，如果这个时候使用构造器就需要写大量有不同参数个数的构造器。举个例子，用一个类来表示包装食品外面显示的营养成分标签。这些标签中有一些是必须的，比如每份的含量，每罐的含量以及每份的卡路里。还有超过20多个可选的参数，比如总脂肪量、饱和脂肪量、转化脂肪、胆固醇、钠等等。大多数的产品在某几个可选参数中都会有非零的值。 对于这样的类，传统方法是采用重叠构造器模式，在这种模式下，第">
-<meta property="og:updated_time" content="2017-07-14T01:31:09.123Z">
+<meta property="og:updated_time" content="2017-07-14T01:34:46.332Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;font color=#0099ff size=6 face=&quot;微软雅黑&quot;&gt;Effective Java 使用构建器Builder&lt;&#x2F;font&gt;">
 <meta name="twitter:description" content="如果一个类有大量可选的参数，如果这个时候使用构造器就需要写大量有不同参数个数的构造器。举个例子，用一个类来表示包装食品外面显示的营养成分标签。这些标签中有一些是必须的，比如每份的含量，每罐的含量以及每份的卡路里。还有超过20多个可选的参数，比如总脂肪量、饱和脂肪量、转化脂肪、胆固醇、钠等等。大多数的产品在某几个可选参数中都会有非零的值。 对于这样的类，传统方法是采用重叠构造器模式，在这种模式下，第">
@@ -382,7 +382,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		NutritionFacts cocaCola = <span class="keyword">new</span> NutritionFacts.Builder(<span class="number">240</span>, <span class="number">8</span>)</div><div class="line">				.calories(<span class="number">100</span>)</div><div class="line">				.carbohydrate(<span class="number">27</span>)</div><div class="line">				.build();</div><div class="line">		...</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
 <p>设置了参数的builder生成了一个很好的抽象工厂，换句话说，客户端可以将这样一个builder传给方法，使该方法能够为客户端创建一个或者多个对象。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Builder</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">build</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>带有Builder实例的方法通常利用有限制的通配符类型来约束构建器的类型参数。下面就是构建每个节点的方法，它利用一个客户端提供的Builder实例来构建树:<br>Tree BuilderTree(Builder&lt;？ extends Node&gt; nodeBuilder) {…}</p>
+<p>带有Builder实例的方法通常利用有限制的通配符类型来约束构建器的类型参数。下面就是构建每个节点的方法，它利用一个客户端提供的Builder实例来构建树:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">Tree <span class="title">BuilderTree</span><span class="params">(Builder&lt;？ extends Node&gt; nodeBuilder)</span> </span>&#123;...&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
